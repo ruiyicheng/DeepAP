@@ -99,16 +99,6 @@ def main(csv_file_path, image_dir_path, num_epochs=100, batch_size=4, lr=0.0001)
 
         return train_dataset, test_dataset
 
-    # 验证划分结果是否无重叠
-    def validate_split(train_dataset, test_dataset):
-        train_star_ids = set(train_dataset.dataset.data.iloc[train_dataset.indices]['star_id'])
-        test_star_ids = set(test_dataset.dataset.data.iloc[test_dataset.indices]['star_id'])
-        overlap = train_star_ids.intersection(test_star_ids)
-        if overlap:
-            raise ValueError(f"错误: {len(overlap)} 个 star_id 同时出现在训练集和测试集")
-        else:
-            print("验证通过：训练集与测试集无重叠 star_id")
-
     # 数据预处理变换
     transform = transforms.Compose([
         transforms.RandomHorizontalFlip(p=0.5),  # 随机水平翻转图像
