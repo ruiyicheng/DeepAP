@@ -98,17 +98,6 @@ def main(csv_file_path, image_dir_path, num_epochs=50, batch_size=256, lr_classi
     # 创建数据集
     dataset = RadiusDataset(csv_file=csv_file_path, image_dir=image_dir_path, transform=transform)
     train_dataset, test_dataset = custom_train_test_split(dataset, test_size=0.3)
-    # # 计算各个子集的大小，按 7:3 划分训练集和测试集
-    # total_size = len(dataset)
-    # train_size = int(0.7 * total_size)
-    # test_size = total_size - train_size  # 剩下的30%分配给测试集
-
-    # print(f"总数据量: {total_size}, 训练集: {train_size}, 测试集: {test_size}")
-
-    # 分割数据集，设置随机种子确保可重复性
-    # train_dataset, test_dataset = random_split(dataset, [train_size, test_size],
-    #                                            generator=torch.Generator().manual_seed(42))
-
     print(f"训练集大小: {len(train_dataset)}, 测试集大小: {len(test_dataset)}")
 
     # 创建 DataLoaders
